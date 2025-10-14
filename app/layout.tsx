@@ -6,8 +6,11 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
+import TechBackground from "@/components/tech-background"
 import { cn } from "@/lib/utils"
 import "./globals.css"
+import Footer from "@/components/footer"
+import Navigation from "@/components/navigation"
 
 const ranade = Inter({
   subsets: ["latin"],
@@ -16,8 +19,8 @@ const ranade = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Hero Page - Modern Design",
-  description: "Clean and modern hero page with Ranade font",
+  title: "GSS CLUBS",
+  description: "CLUB",
   generator: "v0.app",
 }
 
@@ -40,8 +43,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+
+          <TechBackground>
+            <Navigation />
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+          </TechBackground>
         </ThemeProvider>
+        <Footer />
         <Analytics />
       </body>
     </html>

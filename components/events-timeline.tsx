@@ -100,57 +100,83 @@ function EventCard({ event, index, isLeft }: EventCardProps) {
       {/* Event Card */}
       <div className={`w-full md:w-5/12 ${isLeft ? "md:pr-8" : "md:pl-8"}`}>
         <motion.div
-          className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-600 overflow-hidden group hover:border-cyan-400/60 hover:shadow-xl hover:shadow-cyan-400/10 transition-all duration-300"
+          className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-600 overflow-hidden group hover:border-cyan-400/60 transition-all duration-300"
           whileHover={{
-            scale: 1.02,
+            scale: 1.03,
             boxShadow: "0 20px 60px rgba(6, 182, 212, 0.15)",
           }}
+          whileTap={{ scale: 0.98 }}
         >
           {/* Event Image */}
           <div className="relative h-48 overflow-hidden">
-            <img
+            <motion.img
               src={event.image || "/placeholder.svg"}
               alt={event.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.08 }}
+              transition={{ duration: 0.5 }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
 
             {/* Event Type Badge */}
-            <div
+            <motion.div
               className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium border ${getEventTypeColor(event.type)}`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
             >
               <span className="mr-1">{getEventTypeIcon(event.type)}</span>
               {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-            </div>
+            </motion.div>
 
             {/* Status Badge */}
-            <div
+            <motion.div
               className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
                 event.status === "completed"
                   ? "bg-green-500/20 text-green-400 border border-green-500/30"
                   : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
               }`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, delay: index * 0.2 + 0.4 }}
             >
               {event.status === "completed" ? "✓ Completed" : "⏳ Upcoming"}
-            </div>
+            </motion.div>
           </div>
 
           {/* Event Content */}
           <div className="p-6">
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+            <motion.h3
+              className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300"
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
+            >
               {event.title}
-            </h3>
+            </motion.h3>
 
             {/* Event Details */}
-            <p className="text-slate-300 text-sm mb-4 leading-relaxed">{event.description}</p>
+            <motion.p
+              className="text-slate-300 text-sm mb-4 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
+            >
+              {event.description}
+            </motion.p>
 
             {/* Class Footer */}
-            <div className="mt-4 pt-4 border-t border-slate-700/50">
+            <motion.div
+              className="mt-4 pt-4 border-t border-slate-700/50"
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: index * 0.2 + 0.7 }}
+            >
               <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
                 <GraduationCap className="w-3 h-3" />
                 <span>By {event.class}</span>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -247,16 +273,29 @@ export default function EventsTimeline() {
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+          <motion.h2
+            className="text-4xl md:text-6xl font-bold text-white mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Our <span className="text-blue-400">Events</span>
-          </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="text-lg text-slate-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             Discover the exciting workshops, competitions, and activities that make our IT club vibrant
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Timeline */}
