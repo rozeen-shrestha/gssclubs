@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export default function UnderConstruction() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center relative p-4 overflow-hidden">
+    <main className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background animated blobs */}
       <motion.div
         className="absolute top-20 right-20 w-64 h-64 bg-orange-500/10 blur-3xl"
@@ -53,7 +53,7 @@ export default function UnderConstruction() {
           Oops!
         </motion.h1>
         <motion.div
-          className="bg-neo-yellow border-4 border-black px-6 py-4 sm:px-12 sm:py-6 mb-4 shadow-neo-lg w-full flex justify-center"
+          className="bg-neo-yellow border-4 border-black px-4 py-3 sm:px-8 sm:py-5 mb-4 shadow-neo-lg w-full flex justify-center"
           animate={{
             rotate: [-1, 1, -1],
             boxShadow: [
@@ -69,8 +69,8 @@ export default function UnderConstruction() {
           }}
         >
           <motion.span
-            className="font-ranade font-black text-black text-center whitespace-nowrap"
-            style={{ fontSize: 'clamp(1.25rem, 6vw, 2.75rem)' }}
+            className="font-ranade font-black text-lg sm:text-2xl md:text-4xl lg:text-5xl text-black text-center break-words max-w-full"
+            style={{ wordBreak: 'break-word', whiteSpace: 'pre-line' }}
             animate={{
               y: [0, -5, 0],
             }}
@@ -80,7 +80,7 @@ export default function UnderConstruction() {
               ease: "easeInOut",
             }}
           >
-            🚧Under Construction🚧
+            🚧 Under Construction 🚧
           </motion.span>
         </motion.div>
         <motion.p
