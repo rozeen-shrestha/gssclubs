@@ -24,34 +24,39 @@ const teamMembers: TeamMember[] = [
     color: "from-blue-500/20 to-cyan-500/20",
     icon: <Code className="w-8 h-8" />,
     socials: {
-      github: "https://github.com/yourusername",
-      linkedin: "https://linkedin.com/in/yourusername",
-      email: "your.email@example.com",
+      github: "https://github.com/rozeen-shrestha",
+      linkedin: "https://www.linkedin.com/in/rojinshrestha/",
     },
   },
   {
-    name: "Aarya Malla / Myeisha Tiwari",
+    name: "Sneha Nepal",
+    role: "Developer & Designer",
+    contribution: "Initial designs and development contributions",
+    color: "from-violet-500/20 to-purple-500/20",
+    icon: <Code className="w-8 h-8" />,
+    socials: {
+        github: "https://github.com/Sneha-Nepal",
+    },
+  },
+  {
+    name: "Aarya Malla",
     role: "UI/UX Designer",
     contribution: "Visual design, branding, and user experience",
     color: "from-purple-500/20 to-pink-500/20",
     icon: <Palette className="w-8 h-8" />,
-    socials: {
-      github: "https://github.com/designer",
-      linkedin: "https://linkedin.com/in/designer",
-    },
   },
   {
-    name: "Content Team",
-    role: "Content Writers",
-    contribution: "Content creation, copywriting, and documentation",
-    color: "from-green-500/20 to-emerald-500/20",
-    icon: <Users className="w-8 h-8" />,
+    name: "Myeisha Tiwari",
+    role: "UI/UX Designer",
+    contribution: "Visual design, branding, and user experience",
+    color: "from-pink-500/20 to-rose-500/20",
+    icon: <Palette className="w-8 h-8" />,
   },
 ]
 
 export default function Credits() {
   return (
-    <section className="py-20 px-6 min-h-screen">
+    <section className="pt-14 pb-8 px-6 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -126,13 +131,11 @@ export default function Credits() {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon */}
-                  <motion.div
+                  <div
                     className="w-16 h-16 bg-neo-yellow border-4 border-black flex items-center justify-center mb-4 shadow-neo"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
                   >
                     {member.icon}
-                  </motion.div>
+                  </div>
 
                   {/* Name & Role */}
                   <h3 className="font-ranade font-black text-2xl text-white mb-2 uppercase">

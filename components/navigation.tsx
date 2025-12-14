@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { ChevronDown, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function Navigation() {
+function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [clubsOpen, setClubsOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -35,7 +35,14 @@ export default function Navigation() {
     }
   }, [mobileMenuOpen])
 
-  const clubs = ["IT Club", "Arts and Literature Club", "MUN Club", "Social Club", "Sports Club", "Science and Innovation Club"]
+  const clubs = [
+    { name: "IT Club", id: "it-club" },
+    { name: "Arts and Literature Club", id: "arts-club" },
+    { name: "MUN Club", id: "mun-club" },
+    { name: "Social Club", id: "social-club" },
+    { name: "Sports Club", id: "sports-club" },
+    { name: "Science and Innovation Club", id: "science-club" }
+  ]
 
   return (
     <nav
@@ -60,15 +67,19 @@ export default function Navigation() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-10">
-            {["Home", "Student Corner", "Contact"].map((item, index) => (
+            {[
+              { name: "Home", href: "/" },
+              { name: "Student Corner", href: "/student-corner" },
+              { name: "Contact", href: "/contact" }
+            ].map((item, index) => (
               <motion.a
-                key={item}
-                href="#"
+                key={item.name}
+                href={item.href}
                 className={`font-ranade font-bold hover:text-neo-teal transition-colors uppercase tracking-wide ${scrolled ? "text-black" : "text-foreground"}`}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item}
+                {item.name}
               </motion.a>
             ))}
 
@@ -106,15 +117,15 @@ export default function Navigation() {
                   >
                     {clubs.map((club, index) => (
                       <motion.a
-                        key={club}
-                        href="#"
+                        key={club.name}
+                        href={`/clubs/${club.id}`}
                         className="block px-6 py-3 font-ranade font-bold text-black hover:bg-neo-teal hover:text-white transition-colors border-b-2 border-black last:border-b-0"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                         whileHover={{ x: 4 }}
                       >
-                        {club}
+                        {club.name}
                       </motion.a>
                     ))}
                   </motion.div>
@@ -157,17 +168,21 @@ export default function Navigation() {
             <div className="flex flex-col h-full overflow-y-auto">
               {/* Mobile Menu Items */}
               <div className="p-6 space-y-6">
-                {["Home", "Student Corner", "Contact"].map((item, index) => (
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "Student Corner", href: "/student-corner" },
+                  { name: "Contact", href: "/contact" }
+                ].map((item, index) => (
                   <motion.a
-                    key={item}
-                    href="#"
+                    key={item.name}
+                    href={item.href}
                     className="block font-ranade font-bold text-black text-2xl uppercase tracking-wide"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item}
+                    {item.name}
                   </motion.a>
                 ))}
 
@@ -179,15 +194,15 @@ export default function Navigation() {
                   <div className="space-y-3">
                     {clubs.map((club, index) => (
                       <motion.a
-                        key={club}
-                        href="#"
+                        key={club.name}
+                        href={`/clubs/${club.id}`}
                         className="block font-ranade font-bold text-black text-lg pl-4"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {club}
+                        {club.name}
                       </motion.a>
                     ))}
                   </div>
@@ -200,3 +215,5 @@ export default function Navigation() {
     </nav>
   )
 }
+
+export default memo(Navigation)

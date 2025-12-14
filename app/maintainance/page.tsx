@@ -80,7 +80,7 @@ export default function UnderConstruction() {
               ease: "easeInOut",
             }}
           >
-            🚧 Under Construction 🚧
+            Under Construction
           </motion.span>
         </motion.div>
         <motion.p

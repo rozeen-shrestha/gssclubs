@@ -102,33 +102,25 @@ export default function AffiliationCard() {
 
               {/* Stats */}
               <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
-                {/*
+                {[
                   { icon: Users, value: "1700+", label: "Active Students", delay: 0.7 },
-                  { icon: Calendar, value: "50+", label: "Events Organized", delay: 0.8 },
+                  { icon: Calendar, value: "20+", label: "Events Organized", delay: 0.8 },
                   { icon: MapPin, value: "2019 AD", label: "Established", delay: 0.9 },
                 ].map((stat, index) => (
-                */}
-                {["Users", "Calendar", "MapPin"].map((icon, index) => (
                   <motion.div
                     key={index}
                     className="flex items-center gap-3 justify-start"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                    transition={{ duration: 0.5, delay: stat.delay }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <motion.div
+                    <div
                       className="w-10 h-10 bg-neo-blue flex items-center justify-center border-2 border-black"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
                     >
-                      <img
-                        src={`/${icon.toLowerCase()}.svg`}
-                        alt={icon}
-                        className="w-5 h-5 text-neo-yellow"
-                      />
-                    </motion.div>
+                      <stat.icon className="w-5 h-5 text-neo-yellow" />
+                    </div>
                     <div className="text-left">
                       <motion.div
                         className="text-xl font-bold text-white"
@@ -137,18 +129,10 @@ export default function AffiliationCard() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
                       >
-                        {icon === "Users"
-                          ? "1700+"
-                          : icon === "Calendar"
-                          ? "50+"
-                          : "2019 AD"}
+                        {stat.value}
                       </motion.div>
                       <div className="text-sm text-slate-400">
-                        {icon === "Users"
-                          ? "Active Students"
-                          : icon === "Calendar"
-                          ? "Events Organized"
-                          : "Established"}
+                        {stat.label}
                       </div>
                     </div>
                   </motion.div>

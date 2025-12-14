@@ -1,329 +1,181 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import { GraduationCap } from "lucide-react"
+import { motion, useInView, useReducedMotion } from "framer-motion"
+import { Calendar, MapPin, Users, Clock } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
+import { eventsData, type Event } from "@/lib/events-data"
 
-interface Event {
-  id: string
-  title: string
-  date: string
-  time: string
-  location: string
-  description: string
-  attendees: number
-  image: string
-  type: "workshop" | "competition" | "seminar" | "hackathon"
-  status: "completed" | "upcoming"
-  class: string
-}
+export default function EventsTimeline() {
+  const shouldReduceMotion = useReducedMotion()
 
-const eventsData: Event[] = [
-  {
-    id: "1",
-    title: "Cyber Security Seminar",
-    date: "March 15, 2024",
-    time: "2:00 PM - 5:00 PM",
-    location: "Computer Lab A",
-    description:
-      "An engaging seminar focused on the essentials of cyber security. The session covered key concepts, real-world threats, and included a live demonstration showing how hacking takes place. Students gained practical awareness on staying safe online.",
-    attendees: 45,
-    image: "/placeholder.svg?height=300&width=400",
-    type: "seminar",
-    status: "completed",
-    class: "Class of 2024",
-  },
-  {
-    id: "2",
-    title: "Esports Tournament LAN (PUBG & Free Fire)",
-    date: "April 22, 2024",
-    time: "9:00 AM - 4:00 PM",
-    location: "Main Auditorium",
-    description:
-      "A thrilling LAN esports tournament featuring PUBG and Free Fire, organized by the Class of 2025. Teams battled it out in an electrifying atmosphere, showcasing their gaming skills and teamwork. The event fostered camaraderie and competitive spirit among participants.",
-    attendees: 120,
-    image: "/placeholder.svg?height=300&width=400",
-    type: "competition",
-    status: "completed",
-    class: "Class of 2025",
-  },
-]
+  return (
+    <section className="py-20 px-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-ranade font-black text-5xl md:text-6xl text-neo-yellow mb-4 uppercase">
+            Upcoming Events
+          </h2>
+          <p className="font-ranade text-xl text-white/80 max-w-2xl mx-auto">
+            Don't miss out on exciting workshops, competitions, and seminars
+          </p>
+        </motion.div>
 
-const getEventTypeColor = (type: string) => {
-  switch (type) {
-    case "workshop":
-      return "bg-blue-500/20 text-blue-400 border-blue-500/30"
-    case "competition":
-      return "bg-purple-500/20 text-purple-400 border-purple-500/30"
-    case "seminar":
-      return "bg-green-500/20 text-green-400 border-green-500/30"
-    case "hackathon":
-      return "bg-orange-500/20 text-orange-400 border-orange-500/30"
-    default:
-      return "bg-slate-500/20 text-slate-400 border-slate-500/30"
-  }
-}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {eventsData
+            .filter((event) => event.status === "upcoming")
+            .map((event, index) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                index={index}
+                shouldReduceMotion={shouldReduceMotion}
+              />
+            ))}
+        </div>
 
-const getEventTypeIcon = (type: string) => {
-  switch (type) {
-    case "workshop":
-      return "🔬"
-    case "competition":
-      return "🏆"
-    case "seminar":
-      return "📚"
-    case "hackathon":
-      return "💻"
-    default:
-      return "📅"
-  }
+        <motion.div
+          className="mt-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="font-ranade font-black text-4xl md:text-5xl text-neo-teal mb-8 uppercase text-center">
+            Past Events
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {eventsData
+              .filter((event) => event.status === "completed")
+              .map((event, index) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  index={index}
+                  shouldReduceMotion={shouldReduceMotion}
+                />
+              ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
 }
 
 interface EventCardProps {
   event: Event
   index: number
-  isLeft: boolean
+  shouldReduceMotion: boolean | null
 }
 
-function EventCard({ event, index, isLeft }: EventCardProps) {
+function EventCard({ event, index, shouldReduceMotion }: EventCardProps) {
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, margin: "-100px" })
+
+  const getTypeColor = (type: Event["type"]) => {
+    switch (type) {
+      case "workshop":
+        return "bg-neo-blue"
+      case "competition":
+        return "bg-neo-pink"
+      case "seminar":
+        return "bg-neo-teal"
+      case "hackathon":
+        return "bg-neo-yellow"
+      default:
+        return "bg-neo-blue"
+    }
+  }
 
   return (
     <motion.div
       ref={cardRef}
-      className={`flex items-center w-full ${isLeft ? "md:flex-row" : "md:flex-row-reverse"} flex-col`}
-      initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeft ? -100 : 100 }}
-      transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0 }
+          : shouldReduceMotion
+          ? { opacity: 1 }
+          : { opacity: 0, y: 50 }
+      }
+      transition={{
+        duration: 0.5,
+        delay: shouldReduceMotion ? 0 : index * 0.1,
+      }}
     >
-      {/* Event Card */}
-      <div className={`w-full md:w-5/12 ${isLeft ? "md:pr-8" : "md:pl-8"}`}>
-        <motion.div
-          className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-600 overflow-hidden group hover:border-cyan-400/60 transition-all duration-300"
-          whileHover={{
-            scale: 1.03,
-            boxShadow: "0 20px 60px rgba(6, 182, 212, 0.15)",
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {/* Event Image */}
+      <Link href={`/events/${event.id}`}>
+        <div className="group bg-blue-950/40 backdrop-blur-sm border-4 border-black shadow-neo hover:shadow-neo-hover transition-all duration-300 overflow-hidden h-full flex flex-col cursor-pointer">
           <div className="relative h-48 overflow-hidden">
-            <motion.img
-              src={event.image || "/placeholder.svg"}
+            <Image
+              src={event.image}
               alt={event.title}
-              className="w-full h-full object-cover"
-              whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.5 }}
+              width={400}
+              height={300}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-
-            {/* Event Type Badge */}
-            <motion.div
-              className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium border ${getEventTypeColor(event.type)}`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
+            <div
+              className={`absolute top-4 right-4 ${getTypeColor(event.type)} px-4 py-2 border-2 border-black shadow-neo`}
             >
-              <span className="mr-1">{getEventTypeIcon(event.type)}</span>
-              {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-            </motion.div>
-
-            {/* Status Badge */}
-            <motion.div
-              className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
-                event.status === "completed"
-                  ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                  : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-              }`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.4, delay: index * 0.2 + 0.4 }}
-            >
-              {event.status === "completed" ? "✓ Completed" : "⏳ Upcoming"}
-            </motion.div>
+              <span className="font-ranade font-bold text-sm uppercase text-black">
+                {event.type}
+              </span>
+            </div>
+            {event.status === "completed" && (
+              <div className="absolute top-4 left-4 bg-gray-800 px-4 py-2 border-2 border-black shadow-neo">
+                <span className="font-ranade font-bold text-sm uppercase text-white">
+                  Completed
+                </span>
+              </div>
+            )}
           </div>
 
-          {/* Event Content */}
-          <div className="p-6">
-            <motion.h3
-              className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
-            >
+          <div className="p-6 flex-1 flex flex-col">
+            <h3 className="font-ranade font-bold text-2xl text-neo-yellow mb-3 group-hover:text-neo-teal transition-colors">
               {event.title}
-            </motion.h3>
+            </h3>
 
-            {/* Event Details */}
-            <motion.p
-              className="text-slate-300 text-sm mb-4 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
-            >
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center gap-2 text-white/80">
+                <Calendar className="w-4 h-4 text-neo-teal" />
+                <span className="font-ranade text-sm">{event.date}</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <Clock className="w-4 h-4 text-neo-teal" />
+                <span className="font-ranade text-sm">{event.time}</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <MapPin className="w-4 h-4 text-neo-teal" />
+                <span className="font-ranade text-sm">{event.location}</span>
+              </div>
+              {event.attendees > 0 && (
+                <div className="flex items-center gap-2 text-white/80">
+                  <Users className="w-4 h-4 text-neo-teal" />
+                  <span className="font-ranade text-sm">
+                    {event.attendees} attendees
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <p className="font-ranade text-white/70 text-sm line-clamp-3 mb-4 flex-1">
               {event.description}
-            </motion.p>
+            </p>
 
-            {/* Class Footer */}
-            <motion.div
-              className="mt-4 pt-4 border-t border-slate-700/50"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: index * 0.2 + 0.7 }}
-            >
-              <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
-                <GraduationCap className="w-3 h-3" />
-                <span>By {event.class}</span>
-              </div>
-            </motion.div>
+            <div className="mt-auto">
+              <span className="font-ranade font-bold text-neo-teal group-hover:text-neo-yellow transition-colors">
+                Learn More
+              </span>
+            </div>
           </div>
-        </motion.div>
-      </div>
-
-      {/* Timeline Connector - Hidden on mobile */}
-      <div className="hidden md:flex w-2/12 justify-center">
-        <div className="relative">
-          {/* Timeline dot */}
-          <motion.div
-            className="w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-900 relative z-10"
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
-          />
-
-          {/* Connecting line */}
-          {index < eventsData.length - 1 && (
-            <motion.div
-              className="absolute top-4 left-1/2 transform -translate-x-1/2 w-0.5 h-32 bg-gradient-to-b from-blue-500/50 to-transparent"
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 + 0.5 }}
-              style={{ transformOrigin: "top" }}
-            />
-          )}
         </div>
-      </div>
-
-      {/* Spacer for opposite side - Hidden on mobile */}
-      <div className="hidden md:block w-5/12" />
+      </Link>
     </motion.div>
-  )
-}
-
-export default function EventsTimeline() {
-  const timelineRef = useRef(null)
-  const isInView = useInView(timelineRef, { once: true, margin: "-200px" })
-
-  return (
-    <section className="relative min-h-screen py-20">
-      {/* Parallax floating elements */}
-      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating timeline elements */}
-        <motion.div
-          className="absolute top-1/4 left-[10%] w-32 h-32 border border-blue-500/10 rounded-full"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-
-        <motion.div
-          className="absolute top-3/4 right-[15%] w-24 h-24 border border-purple-500/10 rounded-lg"
-          animate={{
-            rotate: [0, -360],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Floating dots */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
-            style={{
-              left: `${25 + i * 20}%`,
-              top: `${20 + (i % 2) * 40}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.6, 0.2],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: i * 0.5,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="container relative mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
-            className="text-4xl md:text-6xl font-bold text-white mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Our <span className="text-blue-400">Events</span>
-          </motion.h2>
-          <motion.p
-            className="text-lg text-slate-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Discover the exciting workshops, competitions, and activities that make our IT club vibrant
-          </motion.p>
-        </motion.div>
-
-        {/* Timeline */}
-        <div ref={timelineRef} className="relative max-w-6xl mx-auto">
-          {/* Mobile Timeline Line */}
-          <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-blue-500/30 to-transparent" />
-
-          {/* Events */}
-          <div className="space-y-8 md:space-y-16">
-            {eventsData.map((event, index) => (
-              <div key={event.id} className="relative">
-                {/* Mobile Timeline Dot */}
-                <div className="md:hidden absolute left-5 top-8 w-3 h-3 bg-blue-500 rounded-full border-2 border-slate-900 z-10" />
-
-                {/* Mobile Card with Left Padding */}
-                <div className="md:hidden ml-12">
-                  <EventCard event={event} index={index} isLeft={true} />
-                </div>
-
-                {/* Desktop Alternating Layout */}
-                <div className="hidden md:block">
-                  <EventCard event={event} index={index} isLeft={index % 2 === 0} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
   )
 }

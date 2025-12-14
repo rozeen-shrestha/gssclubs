@@ -5,12 +5,19 @@ import { GeistMono } from "geist/font/mono"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import dynamic from "next/dynamic"
 import { ThemeProvider } from "@/components/theme-provider"
-import TechBackground from "@/components/tech-background"
 import { cn } from "@/lib/utils"
 import "./globals.css"
-import Footer from "@/components/footer"
-import Navigation from "@/components/navigation"
+import ConditionalNavigation from "@/components/conditional-navigation";
+
+// Lazy load heavy components
+const TechBackground = dynamic(() => import("@/components/tech-background"), {
+  ssr: false,
+})
+const Footer = dynamic(() => import("@/components/footer"), {
+  ssr: true,
+})
 
 const ranade = Inter({
   subsets: ["latin"],
@@ -45,7 +52,7 @@ export default function RootLayout({
         >
 
           <TechBackground>
-            <Navigation />
+            <ConditionalNavigation />
             <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           </TechBackground>
         </ThemeProvider>

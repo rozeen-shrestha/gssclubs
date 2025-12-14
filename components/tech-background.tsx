@@ -16,21 +16,19 @@ export default function TechBackground({
 }: TechBackgroundProps) {
 
   return (
-  <div className={`relative  ${className}`}>
+  <div className={`relative min-h-screen ${className}`}>
       {/* Infinite Grid Pattern Background */}
       {showGrid && (
-        <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 opacity-[0.12] dark:opacity-[0.18]"
-              style={{
-                backgroundImage: `
-                  linear-gradient(to right, #fff 1px, transparent 1px),
-                  linear-gradient(to bottom, #fff 1px, transparent 1px)
-                `,
-                backgroundSize: "80px 80px",
-              }}
-            />
-        </div>
+        <div
+          className="fixed inset-0 z-0 opacity-[0.08] dark:opacity-[0.1]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #fff 1px, transparent 1px),
+              linear-gradient(to bottom, #fff 1px, transparent 1px)
+            `,
+            backgroundSize: "80px 80px",
+          }}
+        />
       )}
 
       {/* Content */}
