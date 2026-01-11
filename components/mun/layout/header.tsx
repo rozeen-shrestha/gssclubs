@@ -38,13 +38,13 @@ export function Header() {
   }, []);
 
   const NavLinks = ({ className }: { className?: string }) => (
-    <nav className={cn("flex items-center gap-6 text-5xl sm:text-3xl lg:text-xl", className)}> {/* Adjusted font size for tablets */}
+    <nav className={cn("flex items-center gap-6 text-5xl sm:text-3xl lg:text-xl", className)}>
       {navLinks.filter((link) => !["/mun/about-us", "/mun/our-team", "/mun/past-editions"].includes(link.href)).map((link) => (
         <Link
           key={link.href}
           href={link.href}
           className={cn(
-            "text-foreground hover:text-primary transition-transform font-semibold hover:scale-105", // Added hover:scale-105 for pop-up effect
+            "text-foreground hover:text-primary transition-all duration-200 font-semibold hover:scale-105",
             isBrowser && typeof window !== 'undefined' && window.location.pathname === link.href ? "border-b-2 border-white" : ""
           )}
         >
@@ -53,16 +53,16 @@ export function Header() {
       ))}
       <div className="relative group" ref={dropdownRef}>
         <button
-          className="text-primary hover:text-primary-dark transition-transform font-semibold flex items-center bg-transparent px-4 py-2 rounded-md hover:scale-105" // Added hover:scale-105
+          className="text-primary hover:text-primary-dark transition-all duration-200 font-semibold flex items-center bg-transparent px-4 py-2 rounded-md hover:scale-105"
           onMouseEnter={() => setGroupOpen(true)}
           onMouseLeave={() => setGroupOpen(false)}
           onClick={() => setGroupOpen(!groupOpen)}
         >
           About Us
           {groupOpen ? (
-            <ChevronUp className="ml-2 h-4 w-4 transition-transform text-primary" />
+            <ChevronUp className="ml-2 h-4 w-4 transition-transform duration-200 text-primary" />
           ) : (
-            <ChevronDown className="ml-2 h-4 w-4 transition-transform text-primary" />
+            <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-200 text-primary" />
           )}
         </button>
         {groupOpen && (
@@ -72,15 +72,15 @@ export function Header() {
             onMouseLeave={() => setGroupOpen(false)}
           >
             <Link href="/mun/about-us" className={cn(
-              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white border-b border-primary hover:scale-105 transition-transform", // Added hover:scale-105
+              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white border-b border-primary hover:scale-105 transition-all duration-200",
               isBrowser && typeof window !== 'undefined' && window.location.pathname === "/mun/about-us" ? "underline" : ""
             )}>About Us</Link>
             <Link href="/mun/our-team" className={cn(
-              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white border-b border-primary hover:scale-105 transition-transform", // Added hover:scale-105
+              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white border-b border-primary hover:scale-105 transition-all duration-200",
               isBrowser && typeof window !== 'undefined' && window.location.pathname === "/mun/our-team" ? "underline" : ""
             )}>Our Team</Link>
             <Link href="/mun/past-editions" className={cn(
-              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white hover:scale-105 transition-transform", // Added hover:scale-105
+              "block px-4 py-2 text-primary-dark hover:bg-primary hover:text-white hover:scale-105 transition-all duration-200",
               isBrowser && typeof window !== 'undefined' && window.location.pathname === "/mun/past-editions" ? "underline" : ""
             )}>Past Editions</Link>
           </div>
@@ -89,42 +89,43 @@ export function Header() {
     </nav>
   );
 
-  // Get forms URL from environment variable
   const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL;
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
+        "sticky top-0 z-50 w-full transition-all duration-500 ease-in-out",
         scrolled
-          ? "bg-[#0B1533]/90 backdrop-blur-md h-20 sm:h-18 lg:h-20"
-          : "bg-transparent h-32 sm:h-28 lg:h-36",
+          ? "bg-[#0B1533]/90 backdrop-blur-md"
+          : "bg-transparent"
       )}
+      style={{
+        height: scrolled ? '5rem' : '8rem',
+      }}
     >
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-full",
+          "mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-full transition-all duration-500",
           scrolled ? "border-b border-white" : "border-none"
         )}
       >
         <Link
           href="/mun"
           aria-label="Go to homepage"
-          className="flex items-center gap-4 sm:justify-center sm:w-auto lg:w-auto"
+          className="flex items-center gap-4 sm:justify-center sm:w-auto lg:w-auto transition-all duration-500"
         >
           <img
             src="/logo.png"
             alt="Logo"
-            className={cn(
-              "transition-all duration-300",
-              scrolled ? "h-14 sm:h-12 lg:h-14" : "h-24 sm:h-20 lg:h-28"
-            )}
+            className="transition-all duration-500 ease-in-out"
+            style={{
+              height: scrolled ? '3.5rem' : '6rem',
+            }}
           />
           <span
-            className="font-bold text-white"
+            className="font-bold text-white transition-all duration-500 ease-in-out whitespace-nowrap"
             style={{
-              fontSize: scrolled ? "clamp(1.2rem, 4vw, 2.5rem)" : "clamp(1.8rem, 5vw, 3.5rem)",
-              whiteSpace: "nowrap",
+              fontSize: scrolled ? '1.75rem' : '2.75rem',
             }}
           >
             GSSMUN

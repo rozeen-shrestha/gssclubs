@@ -1,3 +1,6 @@
+import { Description } from "@radix-ui/react-toast";
+import { describe } from "node:test";
+
 export const navLinks = [
   { href: "/mun", label: "Home" },
   { href: "/mun/about-us", label: "About Us" },
@@ -68,9 +71,9 @@ export const faqs = [
 ];
 
 export const pastEditions = [
-    { year: 2025, theme: "Innovating for a Sustainable Future", imageId: "past-edition-1" },
-    { year: 2024, theme: "Bridging Divides, Building Unity", imageId: "past-edition-2" },
-    { year: 2023, theme: "Navigating a Post-Pandemic World", imageId: "past-edition-3" },
+    { year: 2025, theme: "Innovating for a Sustainable Future", imageId: "past-edition-1", description:"The 2025 edition represented a significant milestone in the GSSMUN journey, marked by a higher standard of debate, increased delegate participation, and a stronger emphasis on practical, solution-oriented diplomacy. The conference facilitated in-depth discussions on pressing global concerns, encouraging delegates to engage critically, negotiate effectively, and produce comprehensive resolutions reflective of contemporary international challenges." },
+    { year: 2024, theme: "Bridging Divides, Building Unity", imageId: "past-edition-2", description:"The 2024 edition served as a phase of consolidation and growth, building upon the successes of the inaugural conference. With improved committee structures, more refined agendas, and enhanced executive oversight, the conference fostered meaningful dialogue and analytical debate. Delegates demonstrated notable improvement in research, policy formulation, and collaborative negotiation throughout the sessions." },
+    { year: 2023, theme: "Navigating a Post-Pandemic World", imageId: "past-edition-3", description: "The inaugural GSSMUN conference in 2023 marked the formal establishment of the platform, providing students with an introduction to diplomatic procedure and multilateral discussion. Despite being the first edition, the conference successfully cultivated an environment of intellectual exchange, encouraging participants to explore global issues through structured debate, cooperation, and consensus-building." },
 ]
 
 export const galleryImages = [
@@ -92,6 +95,7 @@ export const sponsors = [
 ]
 
 export const resources = [
+  { name: "Study Guide - Delegate Handbook", type: "PDF", link: "/resources/Delegate Handbook GSSMUN 4.0.pdf" },
   { name: "Study Guide - UNSC", type: "PDF", link: "/resources/United Nations Security Council ( UNSC ).pdf" },
   { name: "Study Guide - UNHRC", type: "PDF", link: "/resources/United Nations Human Rights Council ( UNHRC ).pdf" },
   { name: "Study Guide - DISEC", type: "PDF", link: "/resources/Disarmament and International Security Committee ( DISEC )_.pdf" },
@@ -100,4 +104,5 @@ export const resources = [
   { name: "Study Guide - IPC", type: "PDF", link: "/resources/International Press Corps ( IPC ).pdf" },
   { name: "Study Guide - House of Lords", type: "PDF", link: "/resources/House of Lords.pdf" },
   { name: "Study Guide - Crisis Committee", type: "PDF", link: "/resources/Crisis Committee_.pdf" },
+
 ]

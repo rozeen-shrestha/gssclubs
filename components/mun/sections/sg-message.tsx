@@ -8,7 +8,7 @@ export function SGMessage() {
         <div className="grid lg:grid-cols-3 gap-12 items-center">
           <div className="lg:col-span-2">
             <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight">
-              A Message from the Secretariat
+              A Message from the Secretary-General
             </h2>
             <div className="mt-8 relative">
               <blockquote className="text-xl text-muted-foreground relative z-10">

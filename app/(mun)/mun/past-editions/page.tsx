@@ -29,7 +29,7 @@ export default function PastEditionsPage() {
                   <p className="text-accent font-semibold text-lg">{edition.year}</p>
                   <h3 className="font-headline text-4xl font-bold mt-2">GSSMUN {edition.year - 2022}.0</h3>
                   <p className="mt-4 text-muted-foreground text-base">
-                    The {edition.year} edition brought together hundreds of delegates to discuss critical global challenges, fostering a spirit of collaboration and innovative thinking. Keynote speakers inspired attendees, and intense debates led to well-crafted resolutions.
+                    {edition.description}
                   </p>
                 </div>
               </Card>

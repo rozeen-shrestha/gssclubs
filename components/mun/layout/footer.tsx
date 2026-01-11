@@ -55,8 +55,8 @@ export function Footer() {
         <div className="flex flex-col flex-1">
           <h3 className="font-headline text-lg font-medium">Contact Us</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li>contact@gssmun.org</li>
-            <li>GSS College, Kathmandu, Nepal</li>
+            <li>gssmunclub@gmail.com</li>
+            <li>Global School of Science, Kathmandu, Nepal</li>
           </ul>
         </div>
       </Container>
