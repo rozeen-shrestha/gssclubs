@@ -1,64 +1,47 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Inter } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import dynamic from "next/dynamic"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
-import "./globals.css"
-import ConditionalNavigation from "@/components/conditional-navigation";
+import type React from "react";
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import dynamic from "next/dynamic";
+import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
+// Main layout kept minimal; per-route groups handle wrappers/styles.
 
-// Lazy load heavy components
-const TechBackground = dynamic(() => import("@/components/tech-background"), {
-  ssr: false,
-})
-const Footer = dynamic(() => import("@/components/footer"), {
-  ssr: true,
-})
+// No global wrappers at root
 
 const ranade = Inter({
   subsets: ["latin"],
   variable: "--font-ranade",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
-  title: "GSS CLUBS",
-  description: "CLUB",
-  generator: "v0.app",
-}
+  title: {
+    default: "GSS Clubs — Global School of Science",
+    template: "%s — GSS Clubs",
+  },
+  description:
+    "Explore student-run clubs, events, and activities at Global School of Science. Discover upcoming workshops, competitions, and past highlights.",
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function SiteLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={cn(
-        "min-h-screen bg-background font-sans antialiased transition-colors duration-300",
-        GeistSans.variable,
-        GeistMono.variable,
-        ranade.variable
-      )}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-
-          <TechBackground>
-            <ConditionalNavigation />
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-          </TechBackground>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased transition-colors duration-300",
+          GeistSans.variable,
+          GeistMono.variable,
+          ranade.variable
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
         </ThemeProvider>
-        <Footer />
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

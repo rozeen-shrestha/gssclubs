@@ -4,50 +4,9 @@ import { AdminPageHeader } from "@/components/admin/admin-page-header"
 import { motion } from "framer-motion"
 import { Plus, Edit, Trash2, Calendar, MapPin, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { adminEvents, adminClubs } from "@/lib/admin-data"
 
-type Event = {
-  id: string
-  title: string
-  club: string
-  date: string
-  time: string
-  location: string
-  status: "upcoming" | "completed"
-  color: string
-}
-
-const events: Event[] = [
-  {
-    id: "1",
-    title: "Web Development Workshop",
-    club: "IT Club",
-    date: "Nov 20, 2025",
-    time: "2:00 PM",
-    location: "Computer Lab",
-    status: "upcoming",
-    color: "bg-neo-teal",
-  },
-  {
-    id: "2",
-    title: "MUN Conference 2025",
-    club: "MUN",
-    date: "Nov 25, 2025",
-    time: "9:00 AM",
-    location: "Auditorium",
-    status: "upcoming",
-    color: "bg-neo-yellow",
-  },
-  {
-    id: "3",
-    title: "Science Fair",
-    club: "Science Club",
-    date: "Nov 15, 2025",
-    time: "10:00 AM",
-    location: "Science Block",
-    status: "completed",
-    color: "bg-purple-500",
-  },
-]
+const events = adminEvents
 
 export default function AdminEventsPage() {
   return (
@@ -85,7 +44,7 @@ export default function AdminEventsPage() {
             <div className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center gap-4">
                 {/* Event Icon */}
-                <div className={`w-16 h-16 ${event.color} border-4 border-black shadow-neo flex items-center justify-center flex-shrink-0`}>
+                <div className={`w-16 h-16 border-4 border-black shadow-neo flex items-center justify-center flex-shrink-0 bg-neo-teal`}>
                   <Calendar className="w-8 h-8 text-black" />
                 </div>
 
@@ -97,7 +56,7 @@ export default function AdminEventsPage() {
                         {event.title}
                       </h3>
                       <p className="font-ranade font-bold text-white/70">
-                        {event.club}
+                        {adminClubs.find(c => c.id === event.clubId)?.name ?? "Unknown Club"}
                       </p>
                     </div>
                     <span

@@ -6,6 +6,7 @@ import { Calendar, MapPin, Users, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { eventsData, type Event } from "@/lib/events-data"
+import EventBadge from "@/components/ui/event-badge"
 
 export default function EventsTimeline() {
   const shouldReduceMotion = useReducedMotion()
@@ -79,20 +80,7 @@ function EventCard({ event, index, shouldReduceMotion }: EventCardProps) {
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, margin: "-100px" })
 
-  const getTypeColor = (type: Event["type"]) => {
-    switch (type) {
-      case "workshop":
-        return "bg-neo-blue"
-      case "competition":
-        return "bg-neo-pink"
-      case "seminar":
-        return "bg-neo-teal"
-      case "hackathon":
-        return "bg-neo-yellow"
-      default:
-        return "bg-neo-blue"
-    }
-  }
+  // type color handled by EventBadge / lib helpers
 
   return (
     <motion.div
@@ -120,18 +108,12 @@ function EventCard({ event, index, shouldReduceMotion }: EventCardProps) {
               height={300}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div
-              className={`absolute top-4 right-4 ${getTypeColor(event.type)} px-4 py-2 border-2 border-black shadow-neo`}
-            >
-              <span className="font-ranade font-bold text-sm uppercase text-black">
-                {event.type}
-              </span>
+            <div className="absolute top-4 right-4">
+              <EventBadge type={event.type} size="sm" />
             </div>
             {event.status === "completed" && (
-              <div className="absolute top-4 left-4 bg-gray-800 px-4 py-2 border-2 border-black shadow-neo">
-                <span className="font-ranade font-bold text-sm uppercase text-white">
-                  Completed
-                </span>
+              <div className="absolute top-4 left-4">
+                <EventBadge status={event.status} size="sm" />
               </div>
             )}
           </div>

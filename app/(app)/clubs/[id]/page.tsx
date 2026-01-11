@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowLeft, Linkedin, Github, Twitter, Instagram, Calendar, Mail } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getClubById } from "@/lib/clubs-data"
@@ -15,8 +16,8 @@ export default function ClubPage({ params }: { params: { id: string } }) {
     notFound()
   }
 
-  // Get events for this club
-  const clubEvents = eventsData.filter((event) => event.club.includes(club.shortName))
+  // Get events for this club by stable id relation
+  const clubEvents = eventsData.filter((event) => event.clubId === club.id)
 
   return (
     <main className="min-h-screen">
@@ -67,9 +68,12 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
                 >
-                  <img
+                  <Image
                     src={club.logo}
-                    alt={`${club.name} Logo`}
+                    alt={`${club.name} logo`}
+                    width={192}
+                    height={192}
+                    sizes="(max-width: 768px) 0px, 192px"
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
@@ -102,7 +106,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Instagram className="w-8 h-8 text-white" />
+                        <Instagram className="w-8 h-8 text-white" aria-hidden="true" focusable="false" />
                       </motion.div>
                       <p className="text-center mt-2 font-ranade font-bold text-xs text-white uppercase">Instagram</p>
                     </a>
@@ -117,7 +121,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Mail className="w-8 h-8 text-black" />
+                        <Mail className="w-8 h-8 text-black" aria-hidden="true" focusable="false" />
                       </motion.div>
                       <p className="text-center mt-2 font-ranade font-bold text-xs text-white uppercase">Email</p>
                     </a>
@@ -171,7 +175,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                           rel="noopener noreferrer"
                           className="w-10 h-10 bg-neo-teal border-2 border-black shadow-neo hover:shadow-neo-hover flex items-center justify-center transition-all hover:scale-110"
                         >
-                          <Linkedin className="w-5 h-5 text-black" />
+                          <Linkedin className="w-5 h-5 text-black" aria-hidden="true" focusable="false" />
                         </a>
                       )}
                       {member.social.github && (
@@ -181,7 +185,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                           rel="noopener noreferrer"
                           className="w-10 h-10 bg-neo-yellow border-2 border-black shadow-neo hover:shadow-neo-hover flex items-center justify-center transition-all hover:scale-110"
                         >
-                          <Github className="w-5 h-5 text-black" />
+                          <Github className="w-5 h-5 text-black" aria-hidden="true" focusable="false" />
                         </a>
                       )}
                       {member.social.twitter && (
@@ -191,7 +195,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                           rel="noopener noreferrer"
                           className="w-10 h-10 bg-blue-400 border-2 border-black shadow-neo hover:shadow-neo-hover flex items-center justify-center transition-all hover:scale-110"
                         >
-                          <Twitter className="w-5 h-5 text-black" />
+                          <Twitter className="w-5 h-5 text-black" aria-hidden="true" focusable="false" />
                         </a>
                       )}
                       {member.social.instagram && (
@@ -201,7 +205,7 @@ export default function ClubPage({ params }: { params: { id: string } }) {
                           rel="noopener noreferrer"
                           className="w-10 h-10 bg-pink-500 border-2 border-black shadow-neo hover:shadow-neo-hover flex items-center justify-center transition-all hover:scale-110"
                         >
-                          <Instagram className="w-5 h-5 text-black" />
+                          <Instagram className="w-5 h-5 text-black" aria-hidden="true" focusable="false" />
                         </a>
                       )}
                     </div>

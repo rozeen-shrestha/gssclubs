@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
 import TechBackground from "./tech-background"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
@@ -67,9 +68,13 @@ export default function HeroSection() {
           >
             {/* Tower Building Image - Central */}
             <div className="relative z-10">
-              <img
+              <Image
                 src="/images/building.png"
                 alt="GSS Tower Building"
+                width={650}
+                height={650}
+                sizes="(max-width: 1024px) 60vh, 650px"
+                priority
                 className="w-auto h-auto"
                 style={{ maxHeight: "clamp(450px, 60vh, 650px)" }}
               />
@@ -93,9 +98,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/social.jpg"
-                    alt="Social Club"
+                    alt="Social Club Logo"
+                    width={168}
+                    height={168}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo border-4 border-black opacity-85"
                   />
                 </motion.div>
@@ -117,9 +125,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/it.jpg"
-                    alt="IT Club"
+                    alt="IT Club Logo"
+                    width={200}
+                    height={200}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo border-4 border-black"
                   />
                 </motion.div>
@@ -141,9 +152,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/arts.jpg"
-                    alt="Arts and Literature Club"
+                    alt="Arts and Literature Club Logo"
+                    width={168}
+                    height={168}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo-lg border-4 border-black"
                   />
                 </motion.div>
@@ -165,9 +179,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/science.jpg"
-                    alt="Science and Innovation Club"
+                    alt="Science and Innovation Club Logo"
+                    width={160}
+                    height={160}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo border-4 border-black"
                   />
                 </motion.div>
@@ -189,9 +206,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/sports.jpg"
-                    alt="Sports Club"
+                    alt="Sports Club Logo"
+                    width={192}
+                    height={192}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo-lg border-4 border-black"
                   />
                 </motion.div>
@@ -213,9 +233,12 @@ export default function HeroSection() {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <img
+                  <Image
                     src="/logo/mun.jpg"
-                    alt="MUN Club"
+                    alt="MUN Club Logo"
+                    width={168}
+                    height={168}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full shadow-neo border-4 border-black opacity-80"
                   />
                 </motion.div>

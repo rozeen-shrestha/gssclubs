@@ -5,7 +5,8 @@ import { motion, useInView } from "framer-motion"
 import { Calendar, ArrowRight, Eye } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { eventsData, getEventTypeColor, getEventTypeIcon } from "@/lib/events-data"
+import EventBadge from "@/components/ui/event-badge"
+import { eventsData } from "@/lib/events-data"
 
 // Get upcoming events from events data
 const upcomingEvents = eventsData.filter(event => event.status === "upcoming").slice(0, 3)
@@ -39,12 +40,11 @@ function TimelineEventCard({ event, index }: EventCardProps) {
             }}
           >
             <div className="flex items-start justify-between mb-4">
-              <motion.div
-                className={`px-3 py-1 font-ranade font-bold text-xs uppercase border-2 border-black shadow-neo ${getEventTypeColor(event.type)}`}
-                whileHover={{ scale: 1.05 }}
-              >
-                {event.type}
-              </motion.div>
+                  <motion.div
+                    className=""
+                  >
+                    <EventBadge type={event.type} size="xs" />
+                  </motion.div>
             </div>
 
             <h3 className="font-ranade font-black text-xl md:text-2xl text-neo-yellow mb-4 uppercase tracking-tight">
@@ -52,7 +52,7 @@ function TimelineEventCard({ event, index }: EventCardProps) {
             </h3>
 
             <div className="flex items-center gap-2 text-neo-teal text-sm mb-4">
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4" aria-hidden="true" focusable="false" />
               <span className="font-ranade font-medium">{event.date}</span>
             </div>
 
@@ -62,8 +62,8 @@ function TimelineEventCard({ event, index }: EventCardProps) {
                 {event.club}
               </div>
 
-              <div className="flex items-center gap-2 bg-neo-yellow hover:bg-neo-teal text-black font-ranade font-bold text-sm px-4 py-2 transition-all duration-300 shadow-neo border-2 border-black group flex-1 justify-center">
-                <Eye className="w-4 h-4" />
+              <div className="flex items-center gap-2 bg-neo-yellow hover:bg-neo-teal text-black font-ranade font-bold text-sm px-4 py-2 transition-all duration-300 shadow-neo border-2 border-black group flex-1 justify-center" role="button" aria-label={`View details for ${event.title}`}>
+                <Eye className="w-4 h-4" aria-hidden="true" focusable="false" />
                 <span>View Details</span>
               </div>
             </div>
@@ -135,7 +135,7 @@ export default function EventsPreview() {
               className="rounded-none bg-neo-teal hover:bg-neo-blue text-black hover:text-white font-ranade font-bold text-lg px-8 py-6 transition-all duration-300 shadow-neo hover:shadow-neo-hover border-4 border-black group"
             >
               <span>View All Events</span>
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" focusable="false" />
             </Button>
           </Link>
         </motion.div>

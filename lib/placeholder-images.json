@@ -1,0 +1,166 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "A grand, modern architectural interior, suggesting a prestigious event venue.",
+      "imageUrl": "https://images.unsplash.com/photo-1678018512238-d4b1729a6644?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcmNoaXRlY3R1cmUlMjBoYWxsfGVufDB8fHx8MTc2MTI0NDc2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "architecture hall"
+    },
+    {
+      "id": "about-preview",
+      "description": "A group of diverse students engaged in a lively discussion around a table.",
+      "imageUrl": "https://images.unsplash.com/photo-1715347783182-93fa68d5a5e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdHVkZW50cyUyMGRpc2N1c3Npb258ZW58MHx8fHwxNzYxMjQ0NzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students discussion"
+    },
+    {
+      "id": "sg-portrait",
+      "description": "A confident and professional portrait of the Secretary-General.",
+      "imageUrl": "https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjExNjM3OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "committee-unsc",
+      "description": "Icon representing the United Nations Security Council.",
+      "imageUrl": "https://images.unsplash.com/photo-1648544373484-b327f2051e60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b3JsZCUyMHBlYWNlfGVufDB8fHx8MTc2MTI0NDc2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "world peace"
+    },
+    {
+      "id": "committee-who",
+      "description": "Icon representing the World Health Organization.",
+      "imageUrl": "https://images.unsplash.com/photo-1659353888002-214239040492?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxnbG9iYWwlMjBoZWFsdGh8ZW58MHx8fHwxNzYxMTU2NTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "global health"
+    },
+    {
+      "id": "committee-hrc",
+      "description": "Icon representing the Human Rights Council.",
+      "imageUrl": "https://images.unsplash.com/photo-1629753908080-e8551ac57b8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxodW1hbiUyMHJpZ2h0c3xlbnwwfHx8fDE3NjEyNDQ3NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "human rights"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Delegates debating in a committee session.",
+      "imageUrl": "https://images.unsplash.com/photo-1695388474402-ed805a890d8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb25mZXJlbmNlJTIwZGViYXRlfGVufDB8fHx8MTc2MTI0NDc2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "conference debate"
+    },
+    {
+      "id": "gallery-2",
+      "description": "A keynote speaker addressing the audience at the opening ceremony.",
+      "imageUrl": "https://images.unsplash.com/photo-1709377274134-94ff067f4d0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwdWJsaWMlMjBzcGVha2luZ3xlbnwwfHx8fDE3NjExNTU3MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "public speaking"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Attendees networking during a coffee break.",
+      "imageUrl": "https://images.unsplash.com/photo-1515169067868-5387ec356754?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZW9wbGUlMjBuZXR3b3JraW5nfGVufDB8fHx8MTc2MTI0NDc2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "people networking"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Group photo of the organizing committee.",
+      "imageUrl": "https://images.unsplash.com/photo-1555734521-b104e271023f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwcGhvdG98ZW58MHx8fHwxNzYxMjM1NjQwfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "team photo"
+    },
+    {
+      "id": "newsletter-cover",
+      "description": "Cover art for a newsletter issue.",
+      "imageUrl": "https://images.unsplash.com/photo-1624574617013-648a86e1b611?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYWdhemluZSUyMGNvdmVyfGVufDB8fHx8MTc2MTIyMDY5NHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "magazine cover"
+    },
+    {
+      "id": "newsletter-page-2",
+      "description": "Second page of a newsletter.",
+      "imageUrl": "https://picsum.photos/seed/nl2/800/1100",
+      "imageHint": "newsletter page"
+    },
+    {
+      "id": "newsletter-page-3",
+      "description": "Third page of a newsletter.",
+      "imageUrl": "https://picsum.photos/seed/nl3/800/1100",
+      "imageHint": "newsletter page"
+    },
+    {
+      "id": "sponsor-1",
+      "description": "Logo of a sponsor.",
+      "imageUrl": "https://images.unsplash.com/photo-1619551734325-81aaf323686c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjExNTA1MTJ8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "sponsor-2",
+      "description": "Logo of a sponsor.",
+      "imageUrl": "https://images.unsplash.com/photo-1517602302552-471fe67acf66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxicmFuZCUyMGxvZ298ZW58MHx8fHwxNzYxMjIwMTYzfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "brand logo"
+    },
+    {
+      "id": "sponsor-3",
+      "description": "Logo of a sponsor.",
+      "imageUrl": "https://images.unsplash.com/photo-1605898643907-844c2bfc764e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwbG9nb3xlbnwwfHx8fDE3NjExNzQ1OTB8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech logo"
+    },
+    {
+      "id": "sponsor-4",
+      "description": "Logo of a sponsor.",
+      "imageUrl": "https://images.unsplash.com/photo-1731012189558-c2d035998542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb3Jwb3JhdGUlMjBsb2dvfGVufDB8fHx8MTc2MTE0MzkyMHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "corporate logo"
+    },
+    {
+      "id": "sponsor-5",
+      "description": "Logo of a sponsor.",
+      "imageUrl": "https://images.unsplash.com/photo-1663124178603-e0b15fe90926?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxidXNpbmVzcyUyMGxvZ298ZW58MHx8fHwxNzYxMjI0NDk1fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "business logo"
+    },
+    {
+      "id": "team-member-1",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEyMjc5NjN8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team-member-2",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1535643302794-19c3804b874b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEyMjc5NjN8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team-member-3",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEyMjc5NjN8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team-member-4",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEyMjc5NjN8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team-member-5",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxMjI3OTYzfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "team-member-6",
+      "description": "Team Member",
+      "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxMjI3OTYzfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "past-edition-1",
+      "description": "Highlight from a past edition",
+      "imageUrl": "https://images.unsplash.com/photo-1574445720114-fd65d383443c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxldmVudCUyMHBob3RvfGVufDB8fHx8MTc2MTIxNTMzOHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "event photo"
+    },
+    {
+      "id": "past-edition-2",
+      "description": "Highlight from a past edition",
+      "imageUrl": "https://images.unsplash.com/photo-1722803921446-70be3842871e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb25mZXJlbmNlJTIwY3Jvd2R8ZW58MHx8fHwxNzYxMjQ0NzYzfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "conference crowd"
+    },
+    {
+      "id": "past-edition-3",
+      "description": "Highlight from a past edition",
+      "imageUrl": "https://images.unsplash.com/photo-1656761961810-9e0f885dff6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhd2FyZCUyMGNlcmVtb255fGVufDB8fHx8MTc2MTE5MTg0MXww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "award ceremony"
+    }
+  ]
+}

@@ -5,53 +5,13 @@ import { motion } from "framer-motion"
 import { UserPlus, Mail, Linkedin, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { adminMembers, adminClubs } from "@/lib/admin-data"
 
-type Member = {
-  id: string
-  name: string
-  role: string
-  club: string
-  email: string
-  avatar?: string
-  social?: {
-    linkedin?: string
-    github?: string
-  }
-}
-
-const members: Member[] = [
-  {
-    id: "1",
-    name: "John Doe",
-    role: "President",
-    club: "IT Club",
-    email: "john@gss.edu.np",
-    social: {
-      linkedin: "https://linkedin.com/in/johndoe",
-      github: "https://github.com/johndoe",
-    },
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    role: "Vice President",
-    club: "IT Club",
-    email: "jane@gss.edu.np",
-    social: {
-      linkedin: "https://linkedin.com/in/janesmith",
-    },
-  },
-  {
-    id: "3",
-    name: "Michael Brown",
-    role: "Secretary General",
-    club: "MUN",
-    email: "michael@gss.edu.np",
-    social: {
-      linkedin: "https://linkedin.com/in/michaelbrown",
-    },
-  },
-]
+const members = adminMembers.map(m => ({
+  ...m,
+  club: adminClubs.find(c => c.id === m.clubId)?.name ?? "Unknown Club",
+  email: "",
+}))
 
 export default function AdminMembersPage() {
   return (

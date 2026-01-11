@@ -4,7 +4,9 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Calendar, MapPin, Users, Clock, Filter, Eye, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { eventsData, getEventTypeColor, getEventTypeIcon, type Event } from "@/lib/events-data"
+import { eventsData, type Event } from "@/lib/events-data"
+import Image from "next/image"
+import EventBadge from "@/components/ui/event-badge"
 import { Button } from "@/components/ui/button"
 
 export default function EventsPage() {
@@ -26,6 +28,30 @@ export default function EventsPage() {
 
   return (
     <main className="min-h-screen">
+      {/* JSON-LD: Events list (first 3 as sample) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Events at GSS Clubs',
+            itemListElement: eventsData.slice(0, 3).map((e, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              url: `https://gssclubs.example.com/events/${e.id}`,
+              item: {
+                '@type': 'Event',
+                name: e.title,
+                startDate: e.date,
+                eventStatus: e.status === 'completed' ? 'https://schema.org/EventCompleted' : 'https://schema.org/EventScheduled',
+                location: { '@type': 'Place', name: e.location },
+                organizer: { '@type': 'Organization', name: e.club },
+              },
+            })),
+          }),
+        }}
+      />
       <section className="pt-14 pb-8 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -204,23 +230,24 @@ export default function EventsPage() {
                       >
                       {/* Event Image */}
                       <div className="relative h-48 overflow-hidden border-b-4 border-black">
-                        <motion.img
-                          src={event.image || "/placeholder.svg"}
-                          alt={event.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.4 }}
-                        />
+                        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }}>
+                          <Image
+                            src={event.image || "/placeholder.svg"}
+                            alt={`${event.title} cover image`}
+                            width={800}
+                            height={400}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
                         {/* Badges on image */}
                         <div className="absolute top-4 left-4 right-4 flex justify-between items-center">
                           <div className="flex items-center gap-2">
-                            <motion.div
-                              className={`px-3 py-1 font-ranade font-bold text-sm uppercase border-2 border-black shadow-neo ${getEventTypeColor(event.type)}`}
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              {event.type}
+                            <motion.div className="" whileHover={{ scale: 1.05 }}>
+                              <EventBadge type={event.type} size="sm" />
                             </motion.div>
 
                             {event.attendees > 0 && (
@@ -234,15 +261,8 @@ export default function EventsPage() {
                             )}
                           </div>
 
-                          <motion.div
-                            className={`px-3 py-1 font-ranade font-bold text-sm uppercase border-2 border-black shadow-neo ${
-                              event.status === "completed"
-                                ? "bg-green-500 text-white"
-                                : "bg-neo-yellow text-black"
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            {event.status === "completed" ? "Completed" : "Upcoming"}
+                          <motion.div whileHover={{ scale: 1.05 }}>
+                            <EventBadge status={event.status} size="sm" />
                           </motion.div>
                         </div>
                       </div>

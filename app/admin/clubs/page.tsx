@@ -4,23 +4,9 @@ import { AdminPageHeader } from "@/components/admin/admin-page-header"
 import { motion } from "framer-motion"
 import { Plus, Edit, Trash2, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { adminClubs } from "@/lib/admin-data"
 
-type Club = {
-  id: string
-  name: string
-  shortName: string
-  members: number
-  color: string
-}
-
-const clubs: Club[] = [
-  { id: "1", name: "IT Club", shortName: "IT", members: 24, color: "bg-neo-teal" },
-  { id: "2", name: "Model United Nations", shortName: "MUN", members: 18, color: "bg-neo-yellow" },
-  { id: "3", name: "Science Club", shortName: "SCI", members: 20, color: "bg-purple-500" },
-  { id: "4", name: "Sports Club", shortName: "SPORTS", members: 32, color: "bg-orange-500" },
-  { id: "5", name: "Arts Club", shortName: "ARTS", members: 16, color: "bg-pink-500" },
-  { id: "6", name: "Social Service Club", shortName: "SOCIAL", members: 22, color: "bg-green-500" },
-]
+const clubs = adminClubs.map(c => ({ ...c, members: 0, color: "bg-neo-teal" }))
 
 export default function AdminClubsPage() {
   return (

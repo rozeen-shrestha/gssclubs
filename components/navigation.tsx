@@ -45,15 +45,17 @@ function Navigation() {
   ]
 
   return (
-    <nav
+        <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-6"}`}
     >
+
+
       <div className={`max-w-7xl mx-auto ${scrolled ? "px-3" : "px-6"}`}>
         <motion.div
+          layout
           className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-white border-4 border-black shadow-neo px-6 py-4" : "px-0 py-0"}`}
-          animate={{
-            boxShadow: scrolled ? "8px 8px 0px rgba(0, 0, 0, 1)" : "none",
-          }}
+          style={{ willChange: "transform" }}
+          transition={{ type: "spring", stiffness: 260, damping: 24 }}
         >
           <motion.div
             className="flex items-center space-x-3"
@@ -65,8 +67,8 @@ function Navigation() {
             </span>
           </motion.div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-10">
+          {/* Desktop Menu (right-aligned group) */}
+          <div className="hidden md:flex items-center gap-6 ml-auto transform-gpu">
             {[
               { name: "Home", href: "/" },
               { name: "Student Corner", href: "/student-corner" },
@@ -92,6 +94,9 @@ function Navigation() {
                 className="flex items-center space-x-1"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                aria-haspopup="menu"
+                aria-expanded={clubsOpen}
+                aria-controls="clubs-menu"
               >
                 <span
                   className={`font-ranade font-bold hover:text-neo-teal transition-colors uppercase tracking-wide ${scrolled ? "text-black" : "text-foreground"}`}
@@ -100,20 +105,22 @@ function Navigation() {
                 </span>
                 <motion.div
                   animate={{ rotate: clubsOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <ChevronDown className={`w-4 h-4 ${scrolled ? "text-black" : "text-foreground"}`} />
+                  <ChevronDown className={`w-4 h-4 ${scrolled ? "text-black" : "text-foreground"}`} aria-hidden="true" focusable="false" />
                 </motion.div>
               </motion.button>
 
               <AnimatePresence>
                 {clubsOpen && (
                   <motion.div
-                    className="absolute top-full left-0 mt-2 w-64 bg-white border-4 border-black shadow-neo-lg"
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-white border-4 border-black shadow-neo-lg transform-gpu"
+                    id="clubs-menu"
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                    style={{ willChange: "transform" }}
                   >
                     {clubs.map((club, index) => (
                       <motion.a
@@ -133,6 +140,7 @@ function Navigation() {
               </AnimatePresence>
             </div>
           </div>
+
 
           {/* Mobile Menu Button */}
           <motion.button
@@ -164,6 +172,7 @@ function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ willChange: "transform" }}
           >
             <div className="flex flex-col h-full overflow-y-auto">
               {/* Mobile Menu Items */}
@@ -207,11 +216,12 @@ function Navigation() {
                     ))}
                   </div>
                 </div>
-              </div>
+            </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
     </nav>
   )
 }

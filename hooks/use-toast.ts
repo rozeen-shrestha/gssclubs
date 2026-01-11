@@ -89,25 +89,11 @@ export const reducer = (state: State, action: Action): State => {
 
     case 'DISMISS_TOAST': {
       const { toastId } = action
-
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
-      if (toastId) {
-        addToRemoveQueue(toastId)
-      } else {
-        state.toasts.forEach((toast) => {
-          addToRemoveQueue(toast.id)
-        })
-      }
-
       return {
         ...state,
         toasts: state.toasts.map((t) =>
           t.id === toastId || toastId === undefined
-            ? {
-                ...t,
-                open: false,
-              }
+            ? { ...t, open: false }
             : t,
         ),
       }
@@ -168,6 +154,16 @@ function toast({ ...props }: Toast) {
   }
 }
 
+function dismissToast(toastId?: string) {
+  // Schedule removal side-effect outside the reducer
+  if (toastId) {
+    addToRemoveQueue(toastId)
+  } else {
+    memoryState.toasts.forEach((t) => addToRemoveQueue(t.id))
+  }
+  dispatch({ type: 'DISMISS_TOAST', toastId })
+}
+
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
@@ -184,7 +180,7 @@ function useToast() {
   return {
     ...state,
     toast,
-    dismiss: (toastId?: string) => dispatch({ type: 'DISMISS_TOAST', toastId }),
+    dismiss: (toastId?: string) => dismissToast(toastId),
   }
 }
 

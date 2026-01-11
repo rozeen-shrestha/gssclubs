@@ -34,3 +34,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## SEO & Metadata
+
+- Domain: `https://clubs.gss.edu.np` set via `metadataBase` in `app/layout.tsx`.
+- Open Graph/Twitter: Absolute image URLs (`https://clubs.gss.edu.np/images/og-banner.png`).
+- JSON-LD:
+	- Home (`app/page.tsx`): Organization + WebSite.
+	- Events list (`app/events/page.tsx`): ItemList + Event entries.
+	- Event detail (`app/events/[id]/page.tsx`): Individual Event schema.
+- Institution name: "Global School of Science" used consistently in titles/descriptions.
+
+If the OG image path changes, update both `openGraph.images` and `twitter.images` in `app/layout.tsx`.

@@ -128,17 +128,19 @@ export default function Contacts() {
                     <div className="flex flex-col gap-2.5">
                       <a
                         href={`tel:${person.socials.phone}`}
+                        aria-label={`Call ${person.name}`}
                         className="flex items-center gap-2.5 text-white hover:text-neo-yellow transition-colors font-ranade bg-black/30 p-2.5 border-2 border-black/50"
                       >
-                        <Phone className="w-4 h-4 flex-shrink-0" />
+                        <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" focusable="false" />
                         <span className="text-sm">{person.socials.phone}</span>
                       </a>
                       {person.socials.email && (
                         <a
                           href={`mailto:${person.socials.email}`}
+                          aria-label={`Email ${person.name}`}
                           className="flex items-center gap-2.5 text-white hover:text-neo-yellow transition-colors font-ranade bg-black/30 p-2.5 border-2 border-black/50"
                         >
-                          <Mail className="w-4 h-4 flex-shrink-0" />
+                          <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" focusable="false" />
                           <span className="text-xs break-all">{person.socials.email}</span>
                         </a>
                       )}

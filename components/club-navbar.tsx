@@ -111,7 +111,7 @@ const ClubNavbar = ({ club }: ClubNavbarProps) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" focusable="false" />
                   All Clubs
                 </motion.div>
               </Link>
@@ -129,8 +129,9 @@ const ClubNavbar = ({ club }: ClubNavbarProps) => {
                 )}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label="Open menu"
               >
-                <Menu size={24} />
+                <Menu size={24} aria-hidden="true" focusable="false" />
               </motion.button>
             </div>
           </motion.div>
@@ -156,8 +157,9 @@ const ClubNavbar = ({ club }: ClubNavbarProps) => {
                 className="p-2 rounded-md hover:bg-gray-800"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label="Close menu"
               >
-                <X size={24} />
+                <X size={24} aria-hidden="true" focusable="false" />
               </motion.button>
             </div>
 

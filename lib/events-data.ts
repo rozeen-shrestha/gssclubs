@@ -10,6 +10,7 @@ export interface Event {
   type: "workshop" | "competition" | "seminar" | "hackathon"
   status: "completed" | "upcoming"
   club: string
+  clubId: string
 }
 
 export const eventsData: Event[] = [
@@ -26,6 +27,7 @@ export const eventsData: Event[] = [
     type: "competition",
     status: "upcoming",
     club: "Sports Club",
+    clubId: "sports-club",
   },
   {
     id: "maths-olympiad",
@@ -40,6 +42,7 @@ export const eventsData: Event[] = [
     type: "competition",
     status: "upcoming",
     club: "Science and Innovation Club",
+    clubId: "science-club",
   },
   {
     id: "cyber-security-seminar",
@@ -54,6 +57,7 @@ export const eventsData: Event[] = [
     type: "seminar",
     status: "completed",
     club: "IT Club",
+    clubId: "it-club",
   },
   {
     id: "esports-tournament-lan",
@@ -68,6 +72,7 @@ export const eventsData: Event[] = [
     type: "competition",
     status: "completed",
     club: "IT Club",
+    clubId: "it-club",
   },
   {
     id: "model-un-conference",
@@ -82,6 +87,7 @@ export const eventsData: Event[] = [
     type: "seminar",
     status: "completed",
     club: "MUN Club",
+    clubId: "mun-club",
   },
 ]
 
@@ -89,31 +95,45 @@ export const getEventById = (id: string): Event | undefined => {
   return eventsData.find((event) => event.id === id)
 }
 
-export const getEventTypeColor = (type: string) => {
+export const EVENT_TYPE_COLORS: Record<Event["type"], string> = {
+  workshop: "bg-neo-teal text-black",
+  competition: "bg-neo-yellow text-black",
+  seminar: "bg-purple-500 text-white",
+  hackathon: "bg-orange-500 text-white",
+}
+
+export const getEventTypeColor = (type: Event["type"]) => {
   switch (type) {
     case "workshop":
-      return "bg-neo-teal text-black"
+      return EVENT_TYPE_COLORS.workshop
     case "competition":
-      return "bg-neo-yellow text-black"
+      return EVENT_TYPE_COLORS.competition
     case "seminar":
-      return "bg-purple-500 text-white"
+      return EVENT_TYPE_COLORS.seminar
     case "hackathon":
-      return "bg-orange-500 text-white"
+      return EVENT_TYPE_COLORS.hackathon
     default:
       return "bg-gray-500 text-white"
   }
 }
 
-export const getEventTypeIcon = (type: string) => {
+export const EVENT_TYPE_ICONS: Record<Event["type"], string> = {
+  workshop: "Workshop",
+  competition: "Competition",
+  seminar: "Seminar",
+  hackathon: "Hackathon",
+}
+
+export const getEventTypeIcon = (type: Event["type"]) => {
   switch (type) {
     case "workshop":
-      return "Workshop"
+      return EVENT_TYPE_ICONS.workshop
     case "competition":
-      return "Competition"
+      return EVENT_TYPE_ICONS.competition
     case "seminar":
-      return "Seminar"
+      return EVENT_TYPE_ICONS.seminar
     case "hackathon":
-      return "Hackathon"
+      return EVENT_TYPE_ICONS.hackathon
     default:
       return "Event"
   }
